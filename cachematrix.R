@@ -38,7 +38,8 @@ makeCacheMatrix <- function(x = matrix()) {
 ##
 ## Usage:
 ##
-## cacheSolve(x) where x is a wrapped matrix returned from makeCacheMatrix
+## cacheSolve(x, ...) where x is a wrapped matrix returned from makeCacheMatrix
+## and ... are optional additional arguments for solve function. 
 ##
 ## return value - inverse of the matrix wrapped in x. If x had cached value
 ## of inverse matrix the cached value is returned. Return value is a raw matrix
@@ -47,7 +48,7 @@ makeCacheMatrix <- function(x = matrix()) {
 cacheSolve <- function(x, ...) {
   inv <- x$getinverse()
   if(is.null(inv)) { 
-    x$setinverse(solve(x$get()))
+    x$setinverse(solve(x$get(), ...))
     inv <- x$getinverse()
   }
   inv
